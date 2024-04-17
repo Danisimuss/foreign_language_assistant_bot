@@ -1,8 +1,0 @@
-Suit - костюм
-Shirt - рубашка
-Tie - галстук
-Dress - платье
-Blouse - блуза
-Skirt - юбка
-Tanktop - топ
-Coat - пальто
