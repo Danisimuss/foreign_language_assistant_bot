@@ -6,7 +6,7 @@ import json
 import pandas as pd
 import matplotlib.pyplot as plt
 
-bot = telebot.TeleBot("7148716540:AAFK_D_AKZt1dDE4VC6nT4dgzcI_6HNn1XA")
+bot = telebot.TeleBot("")
 
 
 def pieplot(teacher_id, name_of_database_csv="database.csv", topic="овощи"):
