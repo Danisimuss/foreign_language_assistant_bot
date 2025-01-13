@@ -156,11 +156,16 @@ def navigate_teacher(message):
 
 def file_topic(message):
     try:
-        topic_name = message.text.lower()  # Добавить в базу
-        sent_msg = bot.send_message(message.chat.id,
-                                    "Дальше отправьте файл в формате txt, где будут записаны слова в формате *English word - перевод*, каждое с новой строки",
-                                    parse_mode="Markdown")
-        bot.register_next_step_handler(sent_msg, get_file_topic, topic_name)
+        topics_database = pd.read_csv("database.csv")
+        topic_name = message.text.lower() # Добавить в базу
+        if topic_name in list(topics_database["название_темы"]):
+            sent_msg = bot.send_message(message.chat.id, "Это название уже используется, придумайте другое")
+            bot.register_next_step_handler(sent_msg, file_topic)
+        else:
+            sent_msg = bot.send_message(message.chat.id,
+                                        "Дальше отправьте файл в формате txt, где будут записаны слова в формате *English word - перевод*, каждое с новой строки",
+                                        parse_mode="Markdown")
+            bot.register_next_step_handler(sent_msg, get_file_topic, topic_name)
     except Exception as e:
         bot.send_message(message.chat.id, "Неправильное название для темы")
         bot.send_message(705359495, "Неправильное название для темы" + e)
